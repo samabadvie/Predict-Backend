@@ -1,0 +1,35 @@
+{
+    "list": [   {
+        "name": "USD",
+        "description": "US Dollars"
+    },
+    {
+        "name": "EUR",
+        "description": "Euro"
+    }, 
+    {
+        "name": "GBT",
+        "description": "British Pounds"
+    }, 
+    {
+        "name": "CNY",
+        "description": "Chinese Yuan"
+    }, 
+    {
+        "name": "CHF",
+        "description": "Swiss Franc"
+    }, 
+    {
+        "name": "CRW",
+        "description": "Korean Won"
+    }, 
+    {
+        "name": "CHF",
+        "description": "Swiss Franc"
+    }, 
+    {
+        "name": "IRR",
+        "description": "Iranian Rial"
+    }]
+    
+}

@@ -1,0 +1,62 @@
+<html style="height: 100%;">
+
+<head>
+  <!-- Use backend base url with `/socket.io/socket.io.js` -->
+  <!-- <script src="http://localhost:8080/socket.io/socket.io.js"></script> -->
+  <script src="https://predict.alswap.com/socket.io/socket.io.js"></script>
+
+  <script>
+    // PRICES
+    // Connect to messari
+    // const messariSocket = io('ws://localhost:8080/prices/messari');
+    const messariSocket = io('wss://predict.alswap.com/prices/messari');
+
+    // subscribe to asset list
+    messariSocket.emit("subscribe", [
+      "1e31218a-e44e-4285-820c-8282ee222035",
+      "7dc551ba-cfed-4437-a027-386044415e3e",
+    ]);
+
+    messariSocket.on('message', function (data) {
+      console.log('Current Price, Difference Percentage:', data);
+    });
+  </script>
+</head>
+
+<body style="display: flex; justify-content: space-between; height: 100%; background-color: black; ">
+
+  <div style="flex-basis: 49vw; border: 1px solid black; color: white; height: 100%; padding: 15px;">
+    <xmp style="height: 100%;">
+      <html>
+
+      <head>
+        <!-- Use backend base url with `/socket.io/socket.io.js` -->
+        <script src="https://predict.alswap.com/socket.io/socket.io.js"></script>
+        <script>
+
+          // PRICES
+          // Connect to messari
+          const messariSocket = io('wss://predict.alswap.com/prices/messari');
+
+          // subscribe to asset list
+          messariSocket.emit("subscribe", [
+            "1e31218a-e44e-4285-820c-8282ee222035",
+            "7dc551ba-cfed-4437-a027-386044415e3e",
+          ]);
+
+          // data: {
+          //     86da9b7d-922b-4abb-8599-e75c6fa5a138: '67.18133470915149,-6.03865182847303',
+          //     54a3d32a-d54b-48ce-9309-8a36c0a0e3cb: '0.04859897390637807,-3.577626613815061'
+          // }
+          messariSocket.on('message', function (data) {
+            console.log('Current Price, Difference Percentage:', data);
+          });
+        </script>
+      </head>
+
+      </html>
+    </xmp>
+  </div>
+</body>
+
+</html>

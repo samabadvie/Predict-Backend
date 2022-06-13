@@ -1,0 +1,54 @@
+<html style="height: 100%;">
+
+<head>
+  <!-- Use backend base url with `/socket.io/socket.io.js` -->
+  <!-- <script src="http://localhost:8080/socket.io/socket.io.js"></script> -->
+  <script src="https://predict.alswap.com/socket.io/socket.io.js"></script>
+
+  <script>
+      //  const updatesSocket = io('ws://localhost:8080/predictUpdates', {
+        const updatesSocket = io('wss://predict.alswap.com/predictUpdates', {
+
+            auth: {
+              token: '111', // no bearer required!
+            }
+          });
+
+          updatesSocket.on('predictUpdates', function (data) {
+            console.log('predictUpdates', data);
+          });
+
+  </script>
+</head>
+
+<body style="display: flex; justify-content: space-between; height: 100%; background-color: black; ">
+
+  <div style="flex-basis: 49vw; border: 1px solid black; color: white; height: 100%; padding: 15px;">
+    <xmp style="height: 100%;">
+      <html>
+        <head>
+          <!-- Use backend base url with `/socket.io/socket.io.js` -->
+          <!-- <script src="http://localhost:8080/socket.io/socket.io.js"></script> -->
+          <script src="https://predict.alswap.com/socket.io/socket.io.js"></script>
+        
+          <script>
+              //  const updatesSocket = io('ws://localhost:8080/predictUpdates', {
+                const updatesSocket = io('wss://predict.alswap.com/predictUpdates', {
+        
+                    auth: {
+                      token: '111', // no bearer required!
+                    }
+                  });
+        
+                  updatesSocket.on('predictUpdates', function (data) {
+                    console.log('predictUpdates', data);
+                  });
+        
+          </script>
+        </head>    
+      </html>
+    </xmp>
+  </div>
+</body>
+
+</html>

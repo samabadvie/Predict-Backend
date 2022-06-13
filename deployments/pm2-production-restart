@@ -1,0 +1,2 @@
+pm2 restart predict-backend
+pm2 save

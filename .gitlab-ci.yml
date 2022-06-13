@@ -1,0 +1,20 @@
+before_script:
+    - apt-get update -qq
+    - apt-get install -qq git
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - echo "$K8S_SECRET_SSH_PRIVATE_KEY"
+    - ssh-add <(echo "$K8S_SECRET_SSH_PRIVATE_KEY" | base64 -d)
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+deploy_production:
+    type: deploy
+    environment:
+        name: production
+        url: 167.99.215.104
+    script:
+      - ssh root@167.99.215.104 "cd /home/nodejs/predict-backend && git checkout main && git pull origin main && npm ci && rm -rf dist/ && npm run build && chmod a+x deployments/pm2-production-restart && ./deployments/pm2-production-restart && exit"
+    only:
+      - main
